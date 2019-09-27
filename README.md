@@ -1,0 +1,2 @@
+# FlashSale
+Sales SpribgBoot API
