@@ -3,19 +3,19 @@ Sales SpringBoot API
 
 Please use the below links
 
-To retrieve the list of customer in the application
+1. To retrieve the list of customer in the application
 
 http://localhost:8191/flashsale/getAllCustomer
 
-To retrieve the list of products in the inventory
+2.To retrieve the list of products in the inventory
 
 http://localhost:8191/flashsale/getAllProduct
 
-To retrieve the purchase order details list
+3.To retrieve the purchase order details list
 
 http://localhost:8191/flashsale/getAllPurchaseOrder
 
-To create customer
+4.To create customer
 
 http://localhost:8191/flashsale/createUser
 
@@ -28,7 +28,7 @@ SAMPLE POST DATA
     "paymentInformation": "Master Card-16xxxx"
 }
 
-To add new products to inventory
+5. To add new products to inventory
 
 http://localhost:8191/flashsale/addProduct
 
@@ -43,7 +43,7 @@ SAMPLE POST DATA
     "quantity":2
 }
 
-To register customer for sales
+6. To register customer for sales
 
 http://localhost:8191/flashsale/registerUserForSale
 
@@ -54,7 +54,7 @@ SAMPLE POST DATA
 }
 
 
-To buy product
+7.To buy product
 
 http://localhost:8191/flashsale/buyProduct
 
