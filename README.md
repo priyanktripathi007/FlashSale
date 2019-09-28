@@ -50,7 +50,7 @@ http://localhost:8191/flashsale/registerUserForSale
 SAMPLE POST DATA
 
 {
-    "email":"priyank123@gmail.com"  
+    "email":"priyank@gmail.com"  
 }
 
 
@@ -66,6 +66,9 @@ SAMPLE POST DATA
  }
  
  
-
+Assumptions
+1. The sales is associated with each item so startdate and end date of sale are saved with the productinfo in the inventory
+2. Sale date checking and other validation have not been implemented.
+3. The system currently allow a user to purchase only one item at a time.
 
 
