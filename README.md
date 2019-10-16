@@ -72,4 +72,4 @@ Assumptions
 3. The system currently allow a user to purchase only one item at a time.
 
 
-![e-r diagram](https://user-images.githubusercontent.com/55877858/66895238-ea719a00-f00f-11e9-920e-5f907cae1a4f.png)
+![erdiagram](https://user-images.githubusercontent.com/55877858/66895305-0f660d00-f010-11e9-98f4-2e445359893e.png)
