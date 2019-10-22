@@ -17,7 +17,7 @@ import com.pramati.metaconfigapp.service.SalesService;
 @RequestMapping(value = "/")
 @org.springframework.web.bind.annotation.CrossOrigin(origins = "*", allowedHeaders = "*")
 public class FlashSaleController {
-
+	static int sale=0;
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
@@ -27,7 +27,7 @@ public class FlashSaleController {
 	
 	@RequestMapping(value = "/purchase", method = RequestMethod.POST)
 	public ResponseModel buy(@RequestBody PurchaseRequest request)
-	{
+	{	if(sale==0)return new ResponseModel("Sale has not yet  started");
 			return salesService.buyProduct(request);
 
 	}
@@ -42,7 +42,7 @@ public class FlashSaleController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseModel registerUser(@RequestBody CustomerDetails 	 customerDetails )
 	{
-
+		if(sale==1)return new ResponseModel("Sale has already started");
 		salesService.registerCustomerForSale(customerDetails.getEmail());
 		return new ResponseModel("User Registered for Sales Successfully");
 	}
@@ -52,7 +52,7 @@ public class FlashSaleController {
 	{
 
 		salesService.unregisterCustomerForSale(customerDetails.getEmail());
-		return new ResponseModel("User Registered for Sales Successfully");
+		return new ResponseModel("User Unregistered from Sales Successfully");
 	}
 
 	@RequestMapping(value = "/product", method = RequestMethod.POST)
@@ -64,6 +64,19 @@ public class FlashSaleController {
 		product.setSaleEndDate(new Date());
 		salesService.addProduct(product);
 		return new ResponseModel("Product Added to Inventory Successfully");
+	}
+
+	@RequestMapping(value = "/startsale", method = RequestMethod.GET)
+	public ResponseModel startsale()
+	{
+		sale=1;
+		return new ResponseModel("Sale started Successfully");
+	}
+	@RequestMapping(value = "/endsale", method = RequestMethod.GET)
+	public ResponseModel endsale()
+	{
+		sale=0;
+		return new ResponseModel("Sale ended Successfully");
 	}
 
 	@RequestMapping(value = "/user", method = RequestMethod.GET)

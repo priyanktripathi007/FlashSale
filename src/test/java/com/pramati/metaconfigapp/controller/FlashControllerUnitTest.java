@@ -34,6 +34,7 @@ public class FlashControllerUnitTest  {
         customerDetails.setShippingAddress("Hyderabad");
         ResponseEntity<ResponseModel> response=template.postForEntity("/flashsale/user",customerDetails,ResponseModel.class);
         Assert.assertEquals("User Created Successfully",response.getBody().getMessage());
+
         response=template.postForEntity("/flashsale/register",customerDetails,ResponseModel.class);
         Assert.assertEquals("User Registered for Sales Successfully",response.getBody().getMessage());
 
@@ -49,6 +50,7 @@ public class FlashControllerUnitTest  {
         customerDetails.setShippingAddress("Delhi");
         ResponseEntity<ResponseModel> response=template.postForEntity("/flashsale/user",customerDetails,ResponseModel.class);
         Assert.assertEquals("User Created Successfully",response.getBody().getMessage());
+        ResponseEntity<ResponseModel> saleresponse=template.getForEntity("/flashsale/endsale", ResponseModel.class);
         response=template.postForEntity("/flashsale/register",customerDetails,ResponseModel.class);
         Assert.assertEquals("User Registered for Sales Successfully",response.getBody().getMessage());
 
@@ -59,7 +61,7 @@ public class FlashControllerUnitTest  {
         Inventory product=new Inventory();
         product.setDiscount(5);
         product.setQuantity(2);
-        product.setName("RolexWatch12");
+        product.setName("RolexWatch15");
         product.setItemCategory("Watch");
         product.setDescription("Diamond Studded watch for sale");
         product.setPrice(1000);
@@ -101,11 +103,13 @@ public class FlashControllerUnitTest  {
 //            }).start();
 //
 //        }
+        ResponseEntity<ResponseModel> saleresponse=template.getForEntity("/flashsale/startsale", ResponseModel.class);
         ResponseEntity<PurchaseResponse> purchase1 = template.postForEntity("/flashsale/purchase", request1, PurchaseResponse.class);
         ResponseEntity<PurchaseResponse> purchase2 = template.postForEntity("/flashsale/purchase", request2, PurchaseResponse.class);
         ResponseEntity<Inventory[]> response1 = template.getForEntity("/flashsale/product", Inventory[].class);
         int quantity = response1.getBody()[0].getQuantity();
         Assert.assertEquals(true, quantity >= 0);
+         saleresponse=template.getForEntity("/flashsale/endsale", ResponseModel.class);
     }
 
 }
