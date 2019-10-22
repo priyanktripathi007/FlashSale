@@ -30,7 +30,7 @@ SAMPLE POST DATA
 
 5. To add new products to inventory
 
-http://localhost:8191/flashsale/addProduct
+http://localhost:8191/flashsale/product
 
 SAMPLE POST DATA
 
