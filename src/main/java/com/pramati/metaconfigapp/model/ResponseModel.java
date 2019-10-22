@@ -7,6 +7,9 @@ public class ResponseModel {
         return message;
     }
 
+    public ResponseModel() {
+    }
+
     public void setMessage(String message) {
         this.message = message;
     }

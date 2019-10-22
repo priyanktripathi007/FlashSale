@@ -8,7 +8,9 @@ public class PurchaseResponse extends  ResponseModel{
         super(message);
         this.purchaseDetail = purchaseDetail;
     }
-
+    public PurchaseResponse(){
+        super();
+    }
     public PurchaseDetail getPurchaseDetail() {
         return purchaseDetail;
     }

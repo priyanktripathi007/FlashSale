@@ -32,9 +32,9 @@ public class FlashControllerUnitTest  {
         customerDetails.setName("Mohan");
         customerDetails.setPhoneNumber("1234566");
         customerDetails.setShippingAddress("Hyderabad");
-        ResponseEntity<ResponseModel> response=template.postForEntity("/flashsale/createUser",customerDetails,ResponseModel.class);
+        ResponseEntity<ResponseModel> response=template.postForEntity("/flashsale/user",customerDetails,ResponseModel.class);
         Assert.assertEquals("User Created Successfully",response.getBody().getMessage());
-        response=template.postForEntity("/flashsale/registerUserForSale",customerDetails,ResponseModel.class);
+        response=template.postForEntity("/flashsale/register",customerDetails,ResponseModel.class);
         Assert.assertEquals("User Registered for Sales Successfully",response.getBody().getMessage());
 
     }
@@ -47,9 +47,9 @@ public class FlashControllerUnitTest  {
         customerDetails.setName("Raju");
         customerDetails.setPhoneNumber("9887654");
         customerDetails.setShippingAddress("Delhi");
-        ResponseEntity<ResponseModel> response=template.postForEntity("/flashsale/createUser",customerDetails,ResponseModel.class);
+        ResponseEntity<ResponseModel> response=template.postForEntity("/flashsale/user",customerDetails,ResponseModel.class);
         Assert.assertEquals("User Created Successfully",response.getBody().getMessage());
-        response=template.postForEntity("/flashsale/registerUserForSale",customerDetails,ResponseModel.class);
+        response=template.postForEntity("/flashsale/register",customerDetails,ResponseModel.class);
         Assert.assertEquals("User Registered for Sales Successfully",response.getBody().getMessage());
 
     }
@@ -59,13 +59,13 @@ public class FlashControllerUnitTest  {
         Inventory product=new Inventory();
         product.setDiscount(5);
         product.setQuantity(2);
-        product.setName("RolexWatch");
+        product.setName("RolexWatch12");
         product.setItemCategory("Watch");
         product.setDescription("Diamond Studded watch for sale");
         product.setPrice(1000);
 
         HttpEntity<String> request = new HttpEntity<String>(product.toString());
-        ResponseEntity<ResponseModel> response=template.postForEntity("/flashsale/addProduct",product,ResponseModel.class);
+        ResponseEntity<ResponseModel> response=template.postForEntity("/flashsale/product",product,ResponseModel.class);
         Assert.assertEquals("Product Added to Inventory Successfully",response.getBody().getMessage());
 
     }
@@ -83,7 +83,7 @@ public class FlashControllerUnitTest  {
         HttpEntity<String> request = new HttpEntity<String>(product.toString());
         template.postForEntity("/flashsale/addProduct",product,ResponseModel.class);
 
-        ResponseEntity<Inventory[]> response=template.getForEntity("/flashsale/getAllProduct", Inventory[].class);
+        ResponseEntity<Inventory[]> response=template.getForEntity("/flashsale/product", Inventory[].class);
         String itemId=response.getBody()[0].getItemId();
         PurchaseRequest request1=new PurchaseRequest();
         request1.setProductId(itemId);
@@ -101,9 +101,9 @@ public class FlashControllerUnitTest  {
 //            }).start();
 //
 //        }
-        ResponseEntity<PurchaseResponse> purchase1 = template.postForEntity("/flashsale/buyProduct", request1, PurchaseResponse.class);
-        ResponseEntity<PurchaseResponse> purchase2 = template.postForEntity("/flashsale/buyProduct", request2, PurchaseResponse.class);
-        ResponseEntity<Inventory[]> response1 = template.getForEntity("/flashsale/getAllProduct", Inventory[].class);
+        ResponseEntity<PurchaseResponse> purchase1 = template.postForEntity("/flashsale/purchase", request1, PurchaseResponse.class);
+        ResponseEntity<PurchaseResponse> purchase2 = template.postForEntity("/flashsale/purchase", request2, PurchaseResponse.class);
+        ResponseEntity<Inventory[]> response1 = template.getForEntity("/flashsale/product", Inventory[].class);
         int quantity = response1.getBody()[0].getQuantity();
         Assert.assertEquals(true, quantity >= 0);
     }

@@ -25,29 +25,37 @@ public class FlashSaleController {
 
 
 	
-	@RequestMapping(value = "/buyProduct", method = RequestMethod.POST)
+	@RequestMapping(value = "/purchase", method = RequestMethod.POST)
 	public ResponseModel buy(@RequestBody PurchaseRequest request)
 	{
 			return salesService.buyProduct(request);
 
 	}
 
-	@RequestMapping(value = "/createUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/user", method = RequestMethod.POST)
 	public ResponseModel createUser(@RequestBody CustomerDetails customerDetails)
 	{	customerDetails.setRegisteredForSale(false);
 		salesService.registerCustomer(customerDetails);
 		return new ResponseModel("User Created Successfully");
 	}
 
-	@RequestMapping(value = "/registerUserForSale", method = RequestMethod.POST)
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseModel registerUser(@RequestBody CustomerDetails 	 customerDetails )
 	{
 
 		salesService.registerCustomerForSale(customerDetails.getEmail());
 		return new ResponseModel("User Registered for Sales Successfully");
 	}
-	
-	@RequestMapping(value = "/addProduct", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/unregister", method = RequestMethod.POST)
+	public ResponseModel unregisterUser(@RequestBody CustomerDetails 	 customerDetails )
+	{
+
+		salesService.unregisterCustomerForSale(customerDetails.getEmail());
+		return new ResponseModel("User Registered for Sales Successfully");
+	}
+
+	@RequestMapping(value = "/product", method = RequestMethod.POST)
 	public ResponseModel addProduct(@RequestBody Inventory product)
 	{
 		UUID uuid = UUID.randomUUID();
@@ -55,24 +63,24 @@ public class FlashSaleController {
 		product.setSaleStartDate(new Date());
 		product.setSaleEndDate(new Date());
 		salesService.addProduct(product);
-		return new ResponseModel("Product Added to Inventory Successfuly");
+		return new ResponseModel("Product Added to Inventory Successfully");
 	}
 
-	@RequestMapping(value = "/getAllCustomer", method = RequestMethod.GET)
+	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public List<CustomerDetails> getAllCustomer()
 	{
 
 		return salesService.getCustomer();
 	}
 
-	@RequestMapping(value = "/getAllProduct", method = RequestMethod.GET)
+	@RequestMapping(value = "/product", method = RequestMethod.GET)
 	public List<Inventory> getAllProduct()
 	{
 
 		return salesService.getProduct();
 	}
 
-	@RequestMapping(value = "/getAllPurchaseOrder", method = RequestMethod.GET)
+	@RequestMapping(value = "/purchase", method = RequestMethod.GET)
 	public List<PurchaseDetail> getPurchaseOrder()
 	{
 

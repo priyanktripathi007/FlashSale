@@ -45,6 +45,19 @@ public class SalesService {
 
 
 	}
+
+	public void unregisterCustomerForSale(String emailId) {
+		//Query query = new Query();
+		//query.addCriteria(Criteria.where("email").is(emailId));
+
+		CustomerDetails customerDetails= mongoTemplate.findOne(Query.query(Criteria.where("email").is(emailId)),CustomerDetails.class);
+		if(customerDetails!=null) {
+			customerDetails.setRegisteredForSale(false);
+			mongoTemplate.save(customerDetails);
+		}
+
+
+	}
 	public List<Inventory> getProduct() {
 		return mongoTemplate.findAll(Inventory.class);
 

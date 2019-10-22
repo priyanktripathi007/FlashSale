@@ -16,8 +16,10 @@ public class CustomerDetails {
 	String paymentInformation;
 
 	boolean isRegisteredForSale;
-	
-	
+
+	public CustomerDetails() {
+	}
+
 	public String getName() {
 		return name;
 	}
