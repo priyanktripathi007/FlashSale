@@ -5,19 +5,19 @@ Please use the below links
 
 1. To retrieve the list of customer in the application
 
-http://localhost:8191/flashsale/getAllCustomer
+http://localhost:8191/flashsale/user
 
 2.To retrieve the list of products in the inventory
 
-http://localhost:8191/flashsale/getAllProduct
+http://localhost:8191/flashsale/product
 
 3.To retrieve the purchase order details list
 
-http://localhost:8191/flashsale/getAllPurchaseOrder
+http://localhost:8191/flashsale/purchase
 
 4.To create customer
 
-http://localhost:8191/flashsale/createUser
+http://localhost:8191/flashsale/user
 
 SAMPLE POST DATA
 {
@@ -43,9 +43,17 @@ SAMPLE POST DATA
     "quantity":2
 }
 
-6. To register customer for sales
+6. To register/unregister customer for sales
 
-http://localhost:8191/flashsale/registerUserForSale
+http://localhost:8191/flashsale/register
+
+SAMPLE POST DATA
+
+{
+    "email":"priyank@gmail.com"  
+}
+
+http://localhost:8191/flashsale/unregister
 
 SAMPLE POST DATA
 
@@ -56,7 +64,7 @@ SAMPLE POST DATA
 
 7.To buy product
 
-http://localhost:8191/flashsale/buyProduct
+http://localhost:8191/flashsale/purchase
 
 SAMPLE POST DATA
 
@@ -65,6 +73,10 @@ SAMPLE POST DATA
     "productId":"f9722cce-2aee-499d-a541-dca75c99ba7a"
  }
  
+ 8. To start/end sale
+ 
+http://localhost:8191/flashsale/startsale
+http://localhost:8191/flashsale/endsale
  
 Assumptions
 1. The sales is associated with each item so startdate and end date of sale are saved with the productinfo in the inventory
